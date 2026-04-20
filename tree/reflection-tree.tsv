@@ -1,0 +1,55 @@
+id	parentId	type	text	options	target	signal
+
+START	null	start	Good evening. Let's reflect on your day.			
+
+A1_OPEN	START	question	How would you describe today overall?	Productive|Mixed|Stressful|Unpredictable		
+
+A1_DECIDE	A1_OPEN	decision		answer=Productive|Mixed:A1_Q1;answer=Stressful|Unpredictable:A1_Q2		
+
+A1_Q1	A1_DECIDE	question	When things worked, what helped most?	My preparation|Team support|Adaptability|Luck		axis1:internal
+
+A1_Q2	A1_DECIDE	question	When challenges appeared, what was your reaction?	Tried to control what I could|Waited for help|Felt stuck|Blamed situation		axis1:external
+
+A1_R_INT	A1_Q1	reflection	You recognized your role in outcomes. That shows ownership and agency.			axis1:internal
+
+A1_R_EXT	A1_Q2	reflection	Difficult days can feel outside control. Notice where even small choices were possible.			axis1:external
+
+BRIDGE_1_2A	A1_R_INT	bridge	Now reflect on what you contributed today.		A2_OPEN	
+
+BRIDGE_1_2B	A1_R_EXT	bridge	Let's shift focus from events to contribution.		A2_OPEN	
+
+A2_OPEN	null	question	Which statement best describes your contribution today?	Helped teammate|Completed responsibilities|Expected recognition|Felt others underperformed		
+
+A2_DECIDE	A2_OPEN	decision		answer=Helped teammate|Completed responsibilities:A2_Q1;answer=Expected recognition|Felt others underperformed:A2_Q2		
+
+A2_Q1	A2_DECIDE	question	How did your contribution impact others?	Made work easier|Shared knowledge|Improved team outcome|Reduced confusion		axis2:contribution
+
+A2_Q2	A2_DECIDE	question	What caused dissatisfaction today?	Lack of appreciation|Unequal effort|Unclear expectations|Delayed support		axis2:entitlement
+
+A2_R_CON	A2_Q1	reflection	Contribution builds trust and long-term growth opportunities.			axis2:contribution
+
+A2_R_ENT	A2_Q2	reflection	Expectations can create frustration. Identifying contribution creates more influence.			axis2:entitlement
+
+BRIDGE_2_3A	A2_R_CON	bridge	Now expand perspective beyond yourself.		A3_OPEN	
+
+BRIDGE_2_3B	A2_R_ENT	bridge	Let's consider how today's events affected others.		A3_OPEN	
+
+A3_OPEN	null	question	When thinking about today's challenges, who comes to mind?	Myself|My team|Specific colleague|Customer		
+
+A3_DECIDE	A3_OPEN	decision		answer=Myself:A3_Q1;answer=My team|Specific colleague|Customer:A3_Q2		
+
+A3_Q1	A3_DECIDE	question	What was your main concern?	My workload|My stress|My deadlines|My expectations		axis3:self
+
+A3_Q2	A3_DECIDE	question	How did others experience the day?	Team pressure|Colleague challenge|Customer impact|Shared responsibility		axis3:others
+
+A3_R_SELF	A3_Q1	reflection	Focusing inward is natural. Expanding perspective can reduce pressure and reveal meaning.			axis3:self
+
+A3_R_ALT	A3_Q2	reflection	Seeing others' experiences builds empathy and purpose.			axis3:others
+
+SUMMARY	A3_R_SELF	summary	Today you showed {axis1.dominant} ownership, {axis2.dominant} contribution mindset, and {axis3.dominant} awareness radius. Small shifts create meaningful progress.		
+
+SUMMARY2	A3_R_ALT	summary	Today you showed {axis1.dominant} ownership, {axis2.dominant} contribution mindset, and {axis3.dominant} awareness radius. Awareness beyond self strengthens leadership.		
+
+END1	SUMMARY	end	Reflection complete. See you tomorrow.			
+
+END2	SUMMARY2	end	Reflection complete. See you tomorrow.			
